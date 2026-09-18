@@ -29,7 +29,7 @@ public class RotX {
                 xifrat.append(caracter);
             } else {
                 boolean esMajuscula = Character.isUpperCase(caracter);
-                nouValor = asignaNouValor(posicio, desplaçament, esMajuscula, true);
+                nouValor = asignaNouCaracter(posicio, desplaçament, esMajuscula, true);
                 xifrat.append(nouValor);        
             }
 
@@ -51,7 +51,7 @@ public class RotX {
                 desxifrat.append(caracter);
             } else {
                 boolean esMajuscula = Character.isUpperCase(caracter);
-                nouValor = asignaNouValor(posicio, desplaçament, esMajuscula, false);
+                nouValor = asignaNouCaracter(posicio, desplaçament, esMajuscula, false);
                 desxifrat.append(nouValor);        
             }
 
@@ -75,7 +75,7 @@ public class RotX {
         return -1;
     }
 
-    public char asignaNouValor(int posicio, int desplaçament, boolean esMajuscula, boolean xifra){
+    public char asignaNouCaracter(int posicio, int desplaçament, boolean esMajuscula, boolean xifra){
         int valor;
         if (xifra){
             valor = (posicio + desplaçament) % minuscules.length;  
@@ -90,13 +90,17 @@ public class RotX {
         }
     }
 
+    public void forcaBrutaRotX(String cadena){
+        for(int i = 0; i < majuscules.length; i++){
+            System.out.println("(" + i + ") -> " + desxifraRotX(cadena, i));
+        }
+
+    }
+
     public static void main(String[] args){
         RotX rotX = new RotX();
 
-        
-        
-        
-        
+            rotX.forcaBrutaRotX("Úiüht, úiü wx ùxì ív?");
     }
     
 }
