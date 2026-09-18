@@ -121,7 +121,13 @@ public class RotX {
         System.out.println();
 
         
-        
+        System.out.println("Missatge xifrat: Úiüht, úiü wx ùxì ív?");
+        System.out.println("---------------------");
+        String[] resultats = rotX.forcaBrutaRotX("Úiüht, úiü wx ùxì ív?");
+
+        for(int i = 0; i < resultats.length; i++){
+            System.out.println(resultats[i]);
+        }
     }
     
 }
