@@ -80,29 +80,23 @@ public class Rot13{
 
     public static void main(String[] args){
         Rot13 rot13 = new Rot13();
-        String cadena = rot13.xifraRot13("abc");
-        System.out.println(cadena);
+        String cadena;
+
+        System.out.println("Xifrat");
+        System.out.println("---------");
+        System.out.println("ABC  =>  " + rot13.xifraRot13("ABC"));
+        System.out.println("XYZ  =>  " + rot13.xifraRot13("XYZ"));
+        System.out.println("Hola, Mr. Calçot  =>  " + rot13.xifraRot13("Hola, Mr. Calçot"));
+        System.out.println("Perdó, per tu què és?  =>  " + rot13.xifraRot13("Perdó, per tu què és?"));
         
-        cadena = rot13.xifraRot13("XYZ");
-        System.out.println(cadena);
+        System.out.println();
 
-        cadena = rot13.xifraRot13("Hola, Mr. calçot");
-        System.out.println(cadena);
-
-        cadena = rot13.xifraRot13("Perdó, per tu què és?");
-        System.out.println(cadena);
-
-        cadena = rot13.desxifraRot13("iïj");
-        System.out.println(cadena);
-
-        cadena = rot13.desxifraRot13("FGH");
-        System.out.println(cadena);
-
-        cadena = rot13.desxifraRot13("Òwúi, Ùá. jiúkwb");
-        System.out.println(cadena);
-
-        cadena = rot13.desxifraRot13("Zmálx, zmá bc acñ nà?");
-        System.out.println(cadena);
+        System.out.println("Desxifrat");
+        System.out.println("---------");
+        System.out.println("IÏJ  =>  " + rot13.desxifraRot13("IÏJ"));
+        System.out.println("FGH  =>  " + rot13.desxifraRot13("FGH"));
+        System.out.println("Òwúi, Ùá. Jiúkwb  =>  " + rot13.desxifraRot13("Òwúi, Ùá. Jiúkwb"));
+        System.out.println("Zmálx, zmá bc acñ nà?  =>  " + rot13.desxifraRot13("Zmálx, zmá bc acñ nà?"));
     }
 
     public int trobaPosicio(char caracter){
