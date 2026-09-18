@@ -100,7 +100,26 @@ public class RotX {
     public static void main(String[] args){
         RotX rotX = new RotX();
 
-            rotX.forcaBrutaRotX("Úiüht, úiü wx ùxì ív?");
+        System.out.println("Xifrat");
+        System.out.println("------");
+        System.out.println("(0)-ABC  ==>  " + rotX.xifraRotX("ABC", 0));
+        System.out.println("(2)-XYZ  ==>  " + rotX.xifraRotX("XYZ", 2));
+        System.out.println("(4)-Hola, Mr. calçot  ==>  " + rotX.xifraRotX("Hola, Mr. calçot", 4));
+        System.out.println("(6)-Perdó, per tu què és  ==>  " + rotX.xifraRotX("Perdó, per tu què és", 6));
+        System.out.println();
+
+        System.out.println("Desxiftrat");
+        System.out.println("------");
+        System.out.println("(0)ABC  ==>  " + rotX.desxifraRotX("ABC", 0));
+        System.out.println("(2)ZAÁ  ==>  " + rotX.desxifraRotX("ZAÁ", 2));
+        System.out.println("(4)Ïqoc, Óú. écoèqü  ==>  " + rotX.desxifraRotX("Ïqoc, Óú. écoèqü", 4));
+        System.out.println("(6)Úiüht, úiü wx ùxì ív?  ==>  " + rotX.desxifraRotX("Úiüht, úiü wx ùxì ív?", 6));
+        System.out.println();
+
+        
+        System.out.println("Missatge xifrat: Úiüht, úiü wx ùxì ív?");
+        System.out.println("---------------------");
+        rotX.forcaBrutaRotX("Úiüht, úiü wx ùxì ív?");
     }
     
 }
