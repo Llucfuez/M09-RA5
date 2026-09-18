@@ -90,10 +90,14 @@ public class RotX {
         }
     }
 
-    public void forcaBrutaRotX(String cadena){
+    public String[] forcaBrutaRotX(String cadena){
+        String[] resultats = new String[majuscules.length];
+        
         for(int i = 0; i < majuscules.length; i++){
-            System.out.println("(" + i + ") -> " + desxifraRotX(cadena, i));
+            resultats[i] = "(" + i + ") -> " + desxifraRotX(cadena, i);
         }
+
+        return resultats;
 
     }
 
@@ -117,9 +121,7 @@ public class RotX {
         System.out.println();
 
         
-        System.out.println("Missatge xifrat: Úiüht, úiü wx ùxì ív?");
-        System.out.println("---------------------");
-        rotX.forcaBrutaRotX("Úiüht, úiü wx ùxì ív?");
+        
     }
     
 }
