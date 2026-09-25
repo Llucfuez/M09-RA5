@@ -92,7 +92,7 @@ public class Monoalfabetic{
         Monoalfabetic monoalfabetic = new Monoalfabetic();
 
         String[] exemples = {"Bona tarda", "Demà passat", "Mola,Pila"};
-        
+        String[] sortides = {monoalfabetic.xifraMonoAlfa(exemples[0]) + "", monoalfabetic.xifraMonoAlfa(exemples[1]) + "", monoalfabetic.xifraMonoAlfa(exemples[2]) + ""};
 
 
         System.out.println("XIFRA");
@@ -107,7 +107,7 @@ public class Monoalfabetic{
 
         System.out.println();
         
-        /*System.out.println("DESXIFRA");
+        System.out.println("DESXIFRA");
         
         System.out.print(sortides[0] + "-->");
         System.out.println(monoalfabetic.desxifraMonoAlfa(sortides[0]));
@@ -116,7 +116,7 @@ public class Monoalfabetic{
         System.out.println(monoalfabetic.desxifraMonoAlfa(sortides[1]));
 
         System.out.print(sortides[2] + "-->");
-        System.out.println(monoalfabetic.desxifraMonoAlfa(sortides[2]));*/
+        System.out.println(monoalfabetic.desxifraMonoAlfa(sortides[2]));
 
         
 
