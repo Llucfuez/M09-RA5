@@ -1,40 +1,63 @@
+import java.util.Random;
+
 public class Monoalfabetic{
     
-    char[][] alfabets = {{'A', 'Á', 'À', 'B', 'C', 'Ç', 'D', 
+    char[] alfabet = {'A', 'Á', 'À', 'B', 'C', 'Ç', 'D', 
                           'E', 'É', 'È', 'F', 'G', 'H', 'I',
                           'Í', 'Ì', 'Ï', 'J', 'K', 'L', 'M', 
                           'N', 'Ñ', 'O', 'Ó', 'Ò', 'P', 'Q', 
                           'R', 'S', 'T', 'U', 'Ú', 'Ù', 'Ü', 
-                          'V', 'W', 'X', 'Y', 'Z'}, 
-                         
-                         {'Ú', 'Ç', 'Q', 'Ó', 'E', 'W', 'Ì', 
-                          'Ù', 'P', 'G', 'H', 'N', 'U', 'O', 
-                          'Z', 'Ò', 'Á', 'D', 'C', 'Ñ', 'Y', 
-                          'I', 'T', 'M', 'L', 'Ї', 'X', 'Ü', 
-                          'É', 'J', 'À', 'S', 'Í', 'È', 'B', 
-                          'F', 'V', 'A', 'K', 'R'}};
+                          'V', 'W', 'X', 'Y', 'Z'};
+    
+    char[] alfabetPermutat;
+
+    public Monoalfabetic(){
+        alfabetPermutat = permutaAlfabet(alfabet);
+    }
+    
+    public char[] permutaAlfabet(char[] alfabet){
+
+        char[] nouAlfabet = alfabet.clone();
+        Random random = new Random();
+
+        for (int i = 0; i < nouAlfabet.length; i++){
+            
+            int j = i + random.nextInt(nouAlfabet.length - i);
+                
+            char temporal = nouAlfabet[i];
+            nouAlfabet[i] = nouAlfabet[j];
+            nouAlfabet[j] = temporal;
+
+            
+        }
+        return nouAlfabet;
+
+    }
 
     public StringBuffer xifraMonoAlfa(String cadena){
         StringBuffer xifrat = new StringBuffer();
         char caracter;
         boolean esMajuscula;
 
-        for(int i = 0; i < cadena.length(); i++){
-            caracter = cadena.charAt(i);
-            
+        for (int i = 0; i < cadena.length(); i++){
 
-            int posicio = trobaPosicio(caracter, 0);
+            caracter = cadena.charAt(i);
+            int posicio = trobaPosicio(caracter, true);
+
             if (posicio == -1){
                 xifrat.append(caracter);
                 continue;
             }
 
             esMajuscula = Character.isUpperCase(caracter);
-            caracter = asignaNouCaracter(posicio, esMajuscula, 1);
-            xifrat.append(caracter);
+            char nouCaracter = asignaNouCaracter(posicio, esMajuscula, true);
+
+            xifrat.append(nouCaracter);
+            
         }
 
         return xifrat;
+        
     }
 
     public StringBuffer desxifraMonoAlfa(String cadena){
@@ -42,19 +65,21 @@ public class Monoalfabetic{
         char caracter;
         boolean esMajuscula;
 
-        for(int i = 0; i < cadena.length(); i++){
-            caracter = cadena.charAt(i);
-            
+        for (int i = 0; i < cadena.length(); i++){
 
-            int posicio = trobaPosicio(caracter, 1);
+            caracter = cadena.charAt(i);
+            int posicio = trobaPosicio(caracter, false);
+
             if (posicio == -1){
                 desxifrat.append(caracter);
                 continue;
             }
 
             esMajuscula = Character.isUpperCase(caracter);
-            caracter = asignaNouCaracter(posicio, esMajuscula, 0);
-            desxifrat.append(caracter);
+            char nouCaracter = asignaNouCaracter(posicio, esMajuscula, false);
+
+            desxifrat.append(nouCaracter);
+            
         }
 
         return desxifrat;
@@ -64,62 +89,82 @@ public class Monoalfabetic{
 
     
     public static void main(String[] args){
-        System.out.println("Xifrat:");
-
         Monoalfabetic monoalfabetic = new Monoalfabetic();
 
-        System.out.print("Test 01 àrbritre, coixí, Perímetre ->    ");
-        System.out.println(monoalfabetic.xifraMonoAlfa("Test 01 àrbritre, coixí, Perímetre"));
+        String[] exemples = {"Bona tarda", "Demà passat", "Mola,Pila"};
+        
 
-        System.out.print("Test 02 Taüll, DÍA, año ->    ");
-        System.out.println(monoalfabetic.xifraMonoAlfa("Test 02 Taüll, DÍA, año"));
 
-        System.out.print("Test 03 Peça, Òrrius, Bòvila ->    ");
-        System.out.println(monoalfabetic.xifraMonoAlfa("Test 03 Peça, Òrrius, Bòvila"));
+        System.out.println("XIFRA");
+        System.out.print(exemples[0] + "-->");
+        System.out.println(monoalfabetic.xifraMonoAlfa(exemples[0]));
 
+        System.out.print(exemples[1] + "-->");
+        System.out.println(monoalfabetic.xifraMonoAlfa(exemples[1]));
+
+        System.out.print(exemples[2] + "-->");
+        System.out.println(monoalfabetic.xifraMonoAlfa(exemples[2]));
 
         System.out.println();
-        System.out.println("desxifrat:");
+        
+        /*System.out.println("DESXIFRA");
+        
+        System.out.print(sortides[0] + "-->");
+        System.out.println(monoalfabetic.desxifraMonoAlfa(sortides[0]));
 
-        System.out.print("Àùjà 01 qéóéoàéù, emoaz, Xùézyùàéù    ->");
-        System.out.println(monoalfabetic.desxifraMonoAlfa("Àùjà 01 qéóéoàéù, emoaz, Xùézyùàéù"));
+        System.out.print(sortides[1] + "-->");
+        System.out.println(monoalfabetic.desxifraMonoAlfa(sortides[1]));
 
-        System.out.print("Àùjà 02 Àúbñň, ÌzÚ, útm    ->");
-        System.out.println(monoalfabetic.desxifraMonoAlfa("Àùjà 02 Àúbñň, ÌzÚ, útm"));
+        System.out.print(sortides[2] + "-->");
+        System.out.println(monoalfabetic.desxifraMonoAlfa(sortides[2]));*/
 
-        System.out.print("Àùjà 03 Xùwú, Ïééosj, Óïfoñú    ->");
-        System.out.println(monoalfabetic.desxifraMonoAlfa("Àùjà 03 Xùwú, Ïééosj, Óïfoñú"));
+        
+
+
     }
 
-    public int trobaPosicio(char caracter, int esEncriptacio){ //esEncriptacio: 0=Encriptar, 1=desEncriptar
-        
-        if(Character.isLetter(caracter) == false){
-            return -1;        
+    public int trobaPosicio(char caracter, boolean estemIncriptant){
+        if (Character.isLetter(caracter) == false){
+            return -1;
         }
         
-        char caracterAlfavet;
         caracter = Character.toUpperCase(caracter);
+        
+        if (estemIncriptant){
+            for (int i = 0; i < alfabet.length; i++){
+                char caracterAlfabet = alfabet[i];
 
-        for (int i = 0; i < alfabets[esEncriptacio].length; i++){
-            caracterAlfavet = alfabets[esEncriptacio][i];
-            
-            
-            if (caracter == caracterAlfavet){
-                return i;
+                if (caracter == caracterAlfabet){
+                    return i;
+                }
+            }
+        } else {
+            for (int i = 0; i < alfabetPermutat.length; i++){
+                char caracterAlfabet = alfabetPermutat[i];
+
+                if (caracter == caracterAlfabet){
+                    return i;
+                }
             }
         }
 
         return -1;
+        
     }
 
-    public char asignaNouCaracter(int posicio, boolean esMajuscula, int esEncriptacio){ //esEncriptacio: 0=desEncripta , 1=Encriptar
-        
-        char nouCaracter = alfabets[esEncriptacio][posicio];
+    public char asignaNouCaracter(int posicio, boolean esMajuscula, boolean estemIncriptant){ // CANVIAR
+        char nouCaracter;
+        if(estemIncriptant){
+            nouCaracter = alfabetPermutat[posicio]; 
+        } else {
+            nouCaracter = alfabet[posicio];
+        }
 
         if (esMajuscula){
             return nouCaracter;
         } else {
             return Character.toLowerCase(nouCaracter);
         }
+        
     }
 }
