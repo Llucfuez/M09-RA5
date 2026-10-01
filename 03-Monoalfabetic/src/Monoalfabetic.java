@@ -1,4 +1,6 @@
 package src;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class Monoalfabetic{
@@ -18,19 +20,20 @@ public class Monoalfabetic{
     
     public char[] permutaAlfabet(char[] alfabet){
 
-        char[] nouAlfabet = alfabet.clone();
-        Random random = new Random();
+        ArrayList<Character> llista = new ArrayList<>();
 
-        for (int i = 0; i < nouAlfabet.length; i++){
-            
-            int j = i + random.nextInt(nouAlfabet.length - i);
-                
-            char temporal = nouAlfabet[i];
-            nouAlfabet[i] = nouAlfabet[j];
-            nouAlfabet[j] = temporal;
-
-            
+        for (int i = 0; i < alfabet.length; i++) {
+            llista.add(alfabet[i]);
         }
+
+        Collections.shuffle(llista);
+
+        char[] nouAlfabet = new char[alfabet.length];
+
+        for (int i = 0; i < llista.size(); i++) {
+            nouAlfabet[i] = llista.get(i);
+        }
+
         return nouAlfabet;
 
     }
