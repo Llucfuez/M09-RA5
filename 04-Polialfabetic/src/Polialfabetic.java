@@ -1,4 +1,4 @@
-public class PoliAlfabetic {
+public class PoliAlfabetic { //ACABAR
     char[] alfabet = {'A', 'Á', 'À', 'B', 'C', 'Ç', 'D', 
                           'E', 'É', 'È', 'F', 'G', 'H', 'I',
                           'Í', 'Ì', 'Ï', 'J', 'K', 'L', 'M', 
@@ -29,7 +29,7 @@ public class PoliAlfabetic {
             System.out.printf("%-34s -> %s%n", msgsXifrats[i], msg);
         }    
         
-        public static String xifraPoliAlfa( String msg){
+        public static String xifraPoliAlfa( String msg){ 
 
         }
 
