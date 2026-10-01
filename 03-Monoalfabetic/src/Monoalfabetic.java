@@ -1,3 +1,4 @@
+package src;
 import java.util.Random;
 
 public class Monoalfabetic{
@@ -152,7 +153,7 @@ public class Monoalfabetic{
         
     }
 
-    public char asignaNouCaracter(int posicio, boolean esMajuscula, boolean estemIncriptant){ // CANVIAR
+    public char asignaNouCaracter(int posicio, boolean esMajuscula, boolean estemIncriptant){ 
         char nouCaracter;
         if(estemIncriptant){
             nouCaracter = alfabetPermutat[posicio]; 
