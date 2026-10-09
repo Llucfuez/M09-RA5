@@ -1,27 +1,28 @@
+package iticbcn.xifratge;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class Polialfabetic { 
+public class XifradorPolialfabetic { 
     
-    private static int clauSecreta = 26082006;
+    private final static int clauSecreta = 26082006;
     
-    static Random random;
-    public static void initRandom(int clau){
+     Random random;
+    public void initRandom(int clau){
         random = new Random(clau);
     }
     
-    static char[] alfabet = {'A', 'Á', 'À', 'B', 'C', 'Ç', 'D', 
+     char[] alfabet = {'A', 'Á', 'À', 'B', 'C', 'Ç', 'D', 
                           'E', 'É', 'È', 'F', 'G', 'H', 'I',
                           'Í', 'Ì', 'Ï', 'J', 'K', 'L', 'M', 
                           'N', 'Ñ', 'O', 'Ó', 'Ò', 'P', 'Q', 
                           'R', 'S', 'T', 'U', 'Ú', 'Ù', 'Ü', 
                           'V', 'W', 'X', 'Y', 'Z'};
     
-    static char[] alfabetPermutat;
+     char[] alfabetPermutat;
     
     
-    public static void main(String[] args) {
+    public  void main(String[] args) {
         String msgs[] = {"Test 01 àrbritre, coixí, Perímetre",
                          "Test 02 Taüll, DÍA, año",
                          "Test 03 Peça, Òrrius, Bòvila"};
@@ -42,7 +43,7 @@ public class Polialfabetic {
         }
     }    
         
-    public static String xifraPoliAlfa(String msg){ 
+    public  String xifraPoliAlfa(String msg){ 
         String xifrat = "";
         char caracter;
         boolean esMajuscula;
@@ -68,7 +69,7 @@ public class Polialfabetic {
         return xifrat;
     }
 
-   public static String desxifraPoliAlfa(String msgXifrat){
+   public  String desxifraPoliAlfa(String msgXifrat){
         String desxifrat = "";
         char caracter;
         boolean esMajuscula;
@@ -96,7 +97,7 @@ public class Polialfabetic {
         return desxifrat;
     }
 
-    public static void permutaAlfabet(){
+    public  void permutaAlfabet(){
         ArrayList<Character> llista = new ArrayList<>();
 
         for (int i = 0; i < alfabet.length; i++) {
@@ -114,7 +115,7 @@ public class Polialfabetic {
         alfabetPermutat = nouAlfabet;
     }
 
-    public static int trobaPosicio(char caracter, boolean estemIncriptant){
+    public  int trobaPosicio(char caracter, boolean estemIncriptant){
         if (Character.isLetter(caracter) == false){
             return -1;
         }
@@ -143,7 +144,7 @@ public class Polialfabetic {
         
     }
 
-    public static char asignaNouCaracter(int posicio, boolean esMajuscula, boolean estemIncriptant){ 
+    public  char asignaNouCaracter(int posicio, boolean esMajuscula, boolean estemIncriptant){ 
         char nouCaracter;
         if(estemIncriptant){
             nouCaracter = alfabetPermutat[posicio]; 

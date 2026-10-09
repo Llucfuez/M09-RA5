@@ -1,3 +1,4 @@
+package iticbcn.xifratge;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.security.MessageDigest;
@@ -5,18 +6,18 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class AES {
+public class XifradorAES {
     
     public static final String ALGORISME_XIFRAT = "AES";
     public static final String ALGORISME_HASH = "SHA-256";
     public static final String FORMAT_AES = "AES/CBC/PKCS5Padding";
 
     private static final int MIDA_IV = 16;
-    private static byte[] iv = new byte [MIDA_IV];
+    private  byte[] iv = new byte [MIDA_IV];
     private static final String CLAU = "LaClauSecretaQueVulguis";
     
     
-    public static void main(String[] args) {
+    public  void main(String[] args) {
         String msgs[] = {"Lorem ipsum dicet",
         "Hola Andrés cómo está tu cuñado",
         "Àgora illa Ôtto"};
@@ -44,7 +45,7 @@ public class AES {
     }
 
 
-    public static byte[] xifraAES(String msg, String clau) throws Exception {
+    public  byte[] xifraAES(String msg, String clau) throws Exception {
 
         
         byte[] bytesString = msg.getBytes(StandardCharsets.UTF_8);
@@ -66,7 +67,7 @@ public class AES {
         return resultat;
     }
 
-    public static String desxifraAES(byte[] bIvIMsgXifrat, String clau) throws Exception {
+    public  String desxifraAES(byte[] bIvIMsgXifrat, String clau) throws Exception {
     
         byte[] iv = new byte[MIDA_IV];
         System.arraycopy(bIvIMsgXifrat, 0, iv, 0, MIDA_IV);
@@ -88,7 +89,7 @@ public class AES {
         return new String(bMsgDesxifrat, StandardCharsets.UTF_8);
     }
 
-    private static byte[] generaIv(){
+    private  byte[] generaIv(){
         SecureRandom random = new SecureRandom(); 
 
         byte[] iv = new byte[MIDA_IV]; 
@@ -99,7 +100,7 @@ public class AES {
 
     }
 
-    private static SecretKeySpec generaHash(String clau) throws Exception{ 
+    private  SecretKeySpec generaHash(String clau) throws Exception{ 
         MessageDigest digest = MessageDigest.getInstance(ALGORISME_HASH); 
 
         byte[] hash = digest.digest(clau.getBytes(StandardCharsets.UTF_8)); 

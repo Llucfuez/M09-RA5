@@ -1,9 +1,10 @@
+package iticbcn.xifratge;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Monoalfabetic{
+public class XifradorMonoalfabetic{
     
-    char[] alfabet = {'A', 'Á', 'À', 'B', 'C', 'Ç', 'D', 
+    final static char[] alfabet = {'A', 'Á', 'À', 'B', 'C', 'Ç', 'D', 
                           'E', 'É', 'È', 'F', 'G', 'H', 'I',
                           'Í', 'Ì', 'Ï', 'J', 'K', 'L', 'M', 
                           'N', 'Ñ', 'O', 'Ó', 'Ò', 'P', 'Q', 
@@ -12,7 +13,7 @@ public class Monoalfabetic{
     
     char[] alfabetPermutat;
 
-    public Monoalfabetic(){
+    public XifradorMonoalfabetic(){
         alfabetPermutat = permutaAlfabet(alfabet);
     }
     
@@ -90,8 +91,8 @@ public class Monoalfabetic{
 
 
     
-    public static void main(String[] args){
-        Monoalfabetic monoalfabetic = new Monoalfabetic();
+    public  void main(String[] args){
+        XifradorMonoalfabetic monoalfabetic = new XifradorMonoalfabetic();
 
         String[] exemples = {"Bona tarda", "Demà passat", "Mola,Pila"};
         String[] sortides = {monoalfabetic.xifraMonoAlfa(exemples[0]) + "", monoalfabetic.xifraMonoAlfa(exemples[1]) + "", monoalfabetic.xifraMonoAlfa(exemples[2]) + ""};
