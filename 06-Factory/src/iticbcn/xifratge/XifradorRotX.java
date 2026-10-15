@@ -1,5 +1,7 @@
 package iticbcn.xifratge;
-public class XifradorRotX {
+import java.nio.charset.StandardCharsets;
+
+public class XifradorRotX implements Xifrador {
     
     final static char[] majuscules = {
     'A', 'Á', 'À', 'B', 'C', 'Ç', 'D', 'E', 'É', 'È',
@@ -14,6 +16,37 @@ public class XifradorRotX {
     'ñ', 'o', 'ó', 'ò', 'p', 'q', 'r', 's', 't', 'u',
     'ú', 'ù', 'ü', 'v', 'w', 'x', 'y', 'z'
     };
+
+    @Override 
+    public TextXifrat  xifra(String msg, String clau) throws ClauNoSuportada{
+        int desplaçament = converteixClau(clau);
+        String xifrat = xifraRotX(msg, desplaçament).toString();
+        return new TextXifrat(xifrat.getBytes(StandardCharsets.UTF_8));
+    }
+
+    @Override 
+    public String desxifra(TextXifrat xifrat, String clau) throws ClauNoSuportada{
+        int desplaçament = converteixClau(clau);
+        String textDesxifrat = desxifraRotX(xifrat.toString(), desplaçament).toString();
+        return textDesxifrat;
+
+    }
+
+    public int converteixClau(String clau) throws ClauNoSuportada{
+        int desplaçament;
+        try {
+            desplaçament = Integer.parseInt(clau);
+        } catch (NumberFormatException e){
+            throw new ClauNoSuportada("Clau de RotX ha de ser un sencer de 0 a 40");
+        }
+
+        if (desplaçament < 0 || desplaçament > 40){
+            throw new ClauNoSuportada("Clau de RotX ha de ser un sencer de 0 a 40");
+        }
+
+        return desplaçament;
+    }
+
 
     public StringBuffer xifraRotX(String cadena, int desplaçament) {
         
@@ -99,36 +132,6 @@ public class XifradorRotX {
         }
 
         return resultats;
-
-    }
-
-    public  void main(String[] args){
-        XifradorRotX rotX = new XifradorRotX();
-
-        System.out.println("Xifrat");
-        System.out.println("------");
-        System.out.println("(0)-ABC  ==>  " + rotX.xifraRotX("ABC", 0));
-        System.out.println("(2)-XYZ  ==>  " + rotX.xifraRotX("XYZ", 2));
-        System.out.println("(4)-Hola, Mr. calçot  ==>  " + rotX.xifraRotX("Hola, Mr. calçot", 4));
-        System.out.println("(6)-Perdó, per tu què és  ==>  " + rotX.xifraRotX("Perdó, per tu què és", 6));
-        System.out.println();
-
-        System.out.println("Desxiftrat");
-        System.out.println("------");
-        System.out.println("(0)ABC  ==>  " + rotX.desxifraRotX("ABC", 0));
-        System.out.println("(2)ZAÁ  ==>  " + rotX.desxifraRotX("ZAÁ", 2));
-        System.out.println("(4)Ïqoc, Óú. écoèqü  ==>  " + rotX.desxifraRotX("Ïqoc, Óú. écoèqü", 4));
-        System.out.println("(6)Úiüht, úiü wx ùxì ív?  ==>  " + rotX.desxifraRotX("Úiüht, úiü wx ùxì ív?", 6));
-        System.out.println();
-
-        
-        System.out.println("Missatge xifrat: Úiüht, úiü wx ùxì ív?");
-        System.out.println("---------------------");
-        String[] resultats = rotX.forcaBrutaRotX("Úiüht, úiü wx ùxì ív?");
-
-        for(int i = 0; i < resultats.length; i++){
-            System.out.println(resultats[i]);
-        }
     }
     
 }

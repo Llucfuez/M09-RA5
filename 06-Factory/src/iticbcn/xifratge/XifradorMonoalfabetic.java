@@ -1,8 +1,9 @@
 package iticbcn.xifratge;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.nio.charset.StandardCharsets;
 
-public class XifradorMonoalfabetic{
+public class XifradorMonoalfabetic implements Xifrador{
     
     final static char[] alfabet = {'A', 'Á', 'À', 'B', 'C', 'Ç', 'D', 
                           'E', 'É', 'È', 'F', 'G', 'H', 'I',
@@ -16,6 +17,25 @@ public class XifradorMonoalfabetic{
     public XifradorMonoalfabetic(){
         alfabetPermutat = permutaAlfabet(alfabet);
     }
+
+    @Override 
+    public TextXifrat xifra(String msg, String clau) throws ClauNoSuportada{
+        if(clau != null){
+            throw new ClauNoSuportada("Xifratxe monoalfabètic no suporta clau != null");
+        }
+        String xifrat = xifraMonoAlfa(msg).toString();
+        return new TextXifrat(xifrat.getBytes(StandardCharsets.UTF_8));
+    }
+
+    @Override
+    public String desxifra(TextXifrat textXifrat, String clau) throws ClauNoSuportada{
+        if(clau != null){
+            throw new ClauNoSuportada("Xifratxe monoalfabètic no suporta clau != null");
+        }
+
+        return desxifraMonoAlfa(textXifrat.toString()).toString();
+    }
+
     
     public char[] permutaAlfabet(char[] alfabet){
 
@@ -88,43 +108,6 @@ public class XifradorMonoalfabetic{
         return desxifrat;
     }
 
-
-
-    
-    public  void main(String[] args){
-        XifradorMonoalfabetic monoalfabetic = new XifradorMonoalfabetic();
-
-        String[] exemples = {"Bona tarda", "Demà passat", "Mola,Pila"};
-        String[] sortides = {monoalfabetic.xifraMonoAlfa(exemples[0]) + "", monoalfabetic.xifraMonoAlfa(exemples[1]) + "", monoalfabetic.xifraMonoAlfa(exemples[2]) + ""};
-
-
-        System.out.println("XIFRA");
-        System.out.print(exemples[0] + "-->");
-        System.out.println(monoalfabetic.xifraMonoAlfa(exemples[0]));
-
-        System.out.print(exemples[1] + "-->");
-        System.out.println(monoalfabetic.xifraMonoAlfa(exemples[1]));
-
-        System.out.print(exemples[2] + "-->");
-        System.out.println(monoalfabetic.xifraMonoAlfa(exemples[2]));
-
-        System.out.println();
-        
-        System.out.println("DESXIFRA");
-        
-        System.out.print(sortides[0] + "-->");
-        System.out.println(monoalfabetic.desxifraMonoAlfa(sortides[0]));
-
-        System.out.print(sortides[1] + "-->");
-        System.out.println(monoalfabetic.desxifraMonoAlfa(sortides[1]));
-
-        System.out.print(sortides[2] + "-->");
-        System.out.println(monoalfabetic.desxifraMonoAlfa(sortides[2]));
-
-        
-
-
-    }
 
     public int trobaPosicio(char caracter, boolean estemIncriptant){
         if (Character.isLetter(caracter) == false){
